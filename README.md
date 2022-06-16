@@ -47,6 +47,7 @@ For js, nodejs,...
 	rm nodejs-cardano-node
 	cd tool/compet
 	git submodule add https://github.com/darkcompet/nodejs-cardano-node.git
+	cd ../..
 	```
 
 

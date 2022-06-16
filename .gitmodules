@@ -4,3 +4,6 @@
 [submodule "tool/compet/nodejs-cardano-wallet"]
 	path = tool/compet/nodejs-cardano-wallet
 	url = https://github.com/darkcompet/nodejs-cardano-wallet.git
+[submodule "tool/compet/nodejs-core"]
+	path = tool/compet/nodejs-core
+	url = https://github.com/darkcompet/nodejs-core.git
