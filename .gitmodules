@@ -1,0 +1,3 @@
+[submodule "tool/compet/nodejs-cardano-node"]
+	path = tool/compet/nodejs-cardano-node
+	url = https://github.com/darkcompet/nodejs-cardano-node.git
