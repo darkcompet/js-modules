@@ -17,7 +17,7 @@ For js, nodejs,...
 	# Add git submodules
 	git submodule add https://github.com/darkcompet/js-core.git
 	git submodule add https://github.com/darkcompet/nodejs-core.git
-	git submodule add https://github.com/darkcompet/nodejs-cardano-node.git
+	git submodule add https://github.com/darkcompet/nodejs-cardano-cli.git
 	git submodule add https://github.com/darkcompet/nodejs-cardano-wallet.git
 	```
 
@@ -38,6 +38,7 @@ For js, nodejs,...
 	git add --all
 	git commit -m "replace_message_here"
 	git push
+	# Don't forget back to previous folder
 	cd ../
 
 	# Turn on root git
