@@ -38,7 +38,7 @@ For js, nodejs,...
 	git add --all
 	git commit -m "replace_message_here"
 	git push
-	cd ..
+	cd ../
 
 	# Turn on root git
 	mv .git-tmp .git
