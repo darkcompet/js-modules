@@ -10,3 +10,6 @@
 [submodule "tool/compet/nodejs-cardano-cli"]
 	path = tool/compet/nodejs-cardano-cli
 	url = https://github.com/darkcompet/nodejs-cardano-cli.git
+[submodule "tool/compet/js-core"]
+	path = tool/compet/js-core
+	url = https://github.com/darkcompet/js-core.git
