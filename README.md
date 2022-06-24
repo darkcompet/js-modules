@@ -31,8 +31,9 @@ For js, nodejs,...
 	mv .git .git-tmp
 
 	# Make new folder
-	mkdir nodejs-cardano-node
-	cd nodejs-cardano-node
+	mkdir js-core
+	cd js-core
+	mkdir src
 	# Add source code files, then push to remote server (lets use vscode for simple)
 	git init
 	git add --all
@@ -45,10 +46,81 @@ For js, nodejs,...
 	mv .git-tmp .git
 
 	# Remove repo at local, and add as submodule to git
-	rm nodejs-cardano-node
+	rm js-core
 	cd tool/compet
-	git submodule add https://github.com/darkcompet/nodejs-cardano-node.git
+	git submodule add https://github.com/darkcompet/js-core.git
 	cd ../..
+	```
+
+
+## How to make/build/publish npm module
+
+- Make module
+
+	```bash
+	# Support we have js-core module, now we will build and publish this to npm.
+	# Ref: https://viblo.asia/p/build-va-publish-mot-npm-typescript-package-gDVK2nGnKLj
+	cd js-core
+	npm init
+
+	# For js-based module
+	npm install typescript --save-dev
+	# For nodejs-based module
+	npm install typescript ts-node @types/node --save-dev
+
+	npx tsc --init
+
+	# Config package (see result for more detail)
+	# "main": "dist/index.js",
+	# "types": "dist/index.d.ts",
+	# "files": [
+	# 	"dist"
+	# ],
+	# "scripts": {
+	# 	"build": "rm -rf dist/ && tsc",
+	# 	"prepare": "npm run build"
+	# },
+	# "keywords": [
+	# 	"cardano",
+	# 	"wallet",
+	# 	"api",
+	# 	"nodejs",
+	# ],
+	nano package.json
+
+	# Config typescript (see result for more detail)
+	# "outDir": "./dist",
+	# "declaration": true,
+	# "include": [
+	# 	"src"
+	# ],
+	# "exclude": [
+	# 	"node_modules",
+	# 	"test"
+	# ]
+	nano tsconfig.json
+
+	# Build
+	npm run build
+	```
+
+- Publish module to npm site
+
+	```bash
+	# Goto module folder
+	cd js-core
+
+	# Ontime login
+	npm login
+
+	# Publish
+	# If we use @darkcompet before package, then by default that package will be privated.
+	# To publish without payment, just config publishConfig at package.json,
+	# or run below command with `--access public`
+	npm publish
+
+	# Check result at
+	https://www.npmjs.com/package/@darkcompet/js-core
 	```
 
 
@@ -59,11 +131,11 @@ For js, nodejs,...
 	```bash
 	# Goto directory of added submodules and Delete from git
 	cd tool/compet
-	git submodule deinit -f csharp-core
-	git rm -f csharp-core
+	git submodule deinit -f js-core
+	git rm -f js-core
 
 	# Delete from disk
-	rm -rf .git/modules/tool/compet/csharp-core
+	rm -rf .git/modules/tool/compet/js-core
 
 	# Delete record from .gitmodules
 	Manually delete lines of the submodule from file `.gitmodules`
