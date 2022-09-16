@@ -27,19 +27,29 @@ For js, nodejs,...
 - Register new module
 
 	```bash
-	# Turn off root git
+	# [Turn off root git]
 	mv .git .git-tmp
 
-	# Make new folder
+	# [Make new module]
 	mkdir js-core
 	cd js-core
 	mkdir src
-	# Add source code files, then push to remote server (lets use vscode for simple)
+	# - Init git (should copy .gitignore, .editorconfig from another module)
 	git init
+	# - Init node project (Refer package.json from another module)
+	npm init
+	# - Install node modules (typescript, ts-node,...)
+	npm install typescript ts-node @types/node @types/express --save-dev
+	npx tsc --init
+	# - Install darkcompet modules, for eg,. js-core, nodejs-core,...
+	npm install @darkcompet/js-core @darkcompet/nodejs-core --save
+	# - Make index.ts file (Refer from another module)
+	touch index.ts
+	# - After everything done, perform Git push
 	git add --all
 	git commit -m "replace_message_here"
 	git push
-	# Don't forget back to previous folder
+	# - Back to previous folder
 	cd ../
 
 	# Turn on root git
