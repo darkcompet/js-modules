@@ -39,8 +39,10 @@ For js, nodejs,...
 	# - Init node project (Refer package.json from another module)
 	npm init
 	# - Install node modules (typescript, ts-node,...)
+	# - Don't forget copy tsconfig.json from another module.
 	npm install typescript ts-node @types/node @types/express --save-dev
 	npx tsc --init
+	cp ../js-core/tsconfig.json .
 	# - Install darkcompet modules, for eg,. js-core, nodejs-core,...
 	npm install @darkcompet/js-core @darkcompet/nodejs-core --save
 	# - Make index.ts file (Refer from another module)
@@ -60,6 +62,11 @@ For js, nodejs,...
 	cd tool/compet
 	git submodule add https://github.com/darkcompet/js-core.git
 	cd ../..
+
+	# Install node modules and Publish to npm site
+	cd tool/compet/js-core
+	npm install
+	npm publish
 	```
 
 
