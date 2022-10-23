@@ -10,3 +10,6 @@
 [submodule "tool/compet/nodejs-s3"]
 	path = tool/compet/nodejs-s3
 	url = https://github.com/darkcompet/nodejs-s3.git
+[submodule "tool/compet/nodejs-cardano-support"]
+	path = tool/compet/nodejs-cardano-support
+	url = https://github.com/darkcompet/nodejs-cardano-support.git

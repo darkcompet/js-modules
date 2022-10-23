@@ -27,117 +27,70 @@ For js, nodejs,...
 - Register new module
 
 	```bash
-	# [Turn off root git]
+	# Turn off root git
 	mv .git .git-tmp
 
-	# [Make new module]
-	mkdir js-core
-	cd js-core
+	# Make new module
+	mkdir ournewmodule
+	cd ournewmodule
 	mkdir src
-	# - Init git (should copy .gitignore, .editorconfig from another module)
+
+	# Init git (should also copy .gitignore, .editorconfig from another module)
 	git init
-	# - Init node project (Refer package.json from another module)
+	cp ../tool/compet/js-core/.gitignore .
+
+	# Init node project
 	npm init
-	# - Install node modules (typescript, ts-node,...)
-	# - Don't forget copy tsconfig.json from another module.
+
+	# Install node modules (typescript, ts-node,...)
+	# - For js-based module:
+	npm install typescript --save-dev
+	# - For nodejs-based module:
 	npm install typescript ts-node @types/node @types/express --save-dev
+
 	npx tsc --init
-	cp ../js-core/tsconfig.json .
-	# - Install darkcompet modules, for eg,. js-core, nodejs-core,...
+
+	# Create and Modify `package.json` and `tsconfig.json`
+	# Should refer/copy from another module for detail.
+	nano package.json
+	nano ./tsconfig.json
+
+	# Install darkcompet modules, for eg,. js-core, nodejs-core,...
 	npm install @darkcompet/js-core @darkcompet/nodejs-core --save
-	# - Make index.ts file (Refer from another module)
-	touch index.ts
-	# - After everything done, perform Git push
+
+	# Make index.ts file (Should refer from another module)
+	touch src/index.ts
+
+	# Done, push to our public repo (Should use vscode for simple process)
 	git add --all
 	git commit -m "replace_message_here"
 	git push
-	# - Back to previous folder
-	cd ../
 
 	# Turn on root git
+	cd ../
 	mv .git-tmp .git
 
 	# Remove repo at local, and add as submodule to git
-	rm js-core
+	rm ournewmodule
 	cd tool/compet
-	git submodule add https://github.com/darkcompet/js-core.git
+	git submodule add https://github.com/darkcompet/ournewmodule.git
 	cd ../..
 
 	# Install node modules and Publish to npm site
-	cd tool/compet/js-core
+	cd tool/compet/ournewmodule
 	npm install
-	npm publish
-	```
 
-
-## How to make/build/publish npm module
-
-- Make module
-
-	```bash
-	# Support we have js-core module, now we will build and publish this to npm.
-	# Ref: https://viblo.asia/p/build-va-publish-mot-npm-typescript-package-gDVK2nGnKLj
-	cd js-core
-	npm init
-
-	# For js-based module
-	npm install typescript --save-dev
-	# For nodejs-based module
-	npm install typescript ts-node @types/node --save-dev
-
-	npx tsc --init
-
-	# Config package (see result for more detail)
-	# "main": "dist/index.js",
-	# "types": "dist/index.d.ts",
-	# "files": [
-	# 	"dist"
-	# ],
-	# "scripts": {
-	# 	"build": "rm -rf dist/ && tsc",
-	# 	"prepare": "npm run build"
-	# },
-	# "keywords": [
-	# 	"cardano",
-	# 	"wallet",
-	# 	"api",
-	# 	"nodejs",
-	# ],
-	nano package.json
-
-	# Config typescript (see result for more detail)
-	# "outDir": "./dist",
-	# "declaration": true,
-	# "include": [
-	# 	"src"
-	# ],
-	# "exclude": [
-	# 	"node_modules",
-	# 	"test"
-	# ]
-	nano tsconfig.json
-
-	# Build
-	npm run build
-	```
-
-- Publish module to npm site
-
-	```bash
-	# Goto module folder
-	cd js-core
-
-	# Ontime login
+	# Onetime login pre-publish (ignore if did before)
 	npm login
 
 	# Publish
-	# If we use @darkcompet before package, then by default that package will be privated.
+	# If we use @darkcompet before package name, then by default that package will be privated.
 	# To publish without payment, just config publishConfig at package.json,
 	# or run below command with `--access public`
 	npm publish
 
 	# Check result at
-	https://www.npmjs.com/package/@darkcompet/js-core
+	https://www.npmjs.com/package/@darkcompet/ournewmodule
 	```
 
 
